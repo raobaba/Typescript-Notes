@@ -8,18 +8,25 @@
 //    console.log(add(+input1.value,+input2.value));
 // });
 
-const add = (number1:number,number2:number)=>{
-    return number1+number2
-}
-//It is ok if you are assigning like this
-//Variable 'n1' implicitly has an 'any' type,
-// but a better type may be inferred from usage.ts(7043)
-let n1;
-n1 = 10;
-n1 = 'rajan';
+// const add = (number1:number,number2:number)=>{
+//     return number1+number2
+// }
+// //It is ok if you are assigning like this
+// //Variable 'n1' implicitly has an 'any' type,
+// // but a better type may be inferred from usage.ts(7043)
+// let n1;
+// n1 = 10;
+// n1 = 'rajan';
 
-//but not ok if you are assigning like this
-let n2 = 10;
-//n2 = 'str'
-let result = add(n1,n2);
-console.log(result);
+// //but not ok if you are assigning like this
+// let n2 = 10;
+// //n2 = 'str'
+// let result = add(n1,n2);
+// console.log(result);
+
+
+const person:{name:string,age:number}={
+    name:"Rajan Kumar",
+    age:26
+}
+console.log(person.name);
