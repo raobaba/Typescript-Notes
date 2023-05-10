@@ -24,26 +24,46 @@
 // let result = add(n1,n2);
 // console.log(result);
 
-enum ROLES {
-  ADMIN,
-  AUTHOR,
-  GUEST
-}
+// enum ROLES {
+//   ADMIN,
+//   AUTHOR,
+//   GUEST
+// }
 
 
-const person:{name:string,age:number,hobbies:string[],role:number}={
-    name:"Rajan Kumar",
-    age:26,
-    hobbies:['singing','acting'],
-    role:ROLES.ADMIN
-}
-// console.log(person.name);
-if(person.role===ROLES.ADMIN){
-    console.log('User is Admin');
-}
-let favorite:any[];//or Either you can leave empty without any[]
-favorite = ['wondering',1];
+// const person:{name:string,age:number,hobbies:string[],role:number}={
+//     name:"Rajan Kumar",
+//     age:26,
+//     hobbies:['singing','acting'],
+//     role:ROLES.ADMIN
+// }
+// // console.log(person.name);
+// if(person.role===ROLES.ADMIN){
+//     console.log('User is Admin');
+// }
+// let favorite:any[];//or Either you can leave empty without any[]
+// favorite = ['wondering',1];
 
-for(let hobby of person.hobbies){
-    console.log(hobby.toLocaleUpperCase());
+// for(let hobby of person.hobbies){
+//     console.log(hobby.toLocaleUpperCase());
+// }
+
+//assigning any[]
+// let array:any[]=[];
+// array.push('rajan');
+// array.push(1)
+// console.log(array);
+
+//assigning union('something'|'something')
+
+const combine=(number1:number|string|boolean,number2:number|string|boolean)=>{
+    let res;
+     if(typeof number1 === 'number' && typeof number2 === 'number'){
+        res = number1+number2;
+     }else{
+       res = number1.toString()+number2.toString();
+     }
+     return res;
 }
+const result = combine('rajan ','kumar');
+console.log(result);

@@ -21,25 +21,41 @@
 // //n2 = 'str'
 // let result = add(n1,n2);
 // console.log(result);
-var ROLES;
-(function (ROLES) {
-    ROLES[ROLES["ADMIN"] = 0] = "ADMIN";
-    ROLES[ROLES["AUTHOR"] = 1] = "AUTHOR";
-    ROLES[ROLES["GUEST"] = 2] = "GUEST";
-})(ROLES || (ROLES = {}));
-var person = {
-    name: "Rajan Kumar",
-    age: 26,
-    hobbies: ['singing', 'acting'],
-    role: ROLES.ADMIN
+// enum ROLES {
+//   ADMIN,
+//   AUTHOR,
+//   GUEST
+// }
+// const person:{name:string,age:number,hobbies:string[],role:number}={
+//     name:"Rajan Kumar",
+//     age:26,
+//     hobbies:['singing','acting'],
+//     role:ROLES.ADMIN
+// }
+// // console.log(person.name);
+// if(person.role===ROLES.ADMIN){
+//     console.log('User is Admin');
+// }
+// let favorite:any[];//or Either you can leave empty without any[]
+// favorite = ['wondering',1];
+// for(let hobby of person.hobbies){
+//     console.log(hobby.toLocaleUpperCase());
+// }
+//assigning any[]
+// let array:any[]=[];
+// array.push('rajan');
+// array.push(1)
+// console.log(array);
+//assigning union('something'|'something')
+var combine = function (number1, number2) {
+    var res;
+    if (typeof number1 === 'number' && typeof number2 === 'number') {
+        res = number1 + number2;
+    }
+    else {
+        res = number1.toString() + number2.toString();
+    }
+    return res;
 };
-// console.log(person.name);
-if (person.role === ROLES.ADMIN) {
-    console.log('User is Admin');
-}
-var favorite; //or Either you can leave empty without any[]
-favorite = ['wondering', 1];
-for (var _i = 0, _a = person.hobbies; _i < _a.length; _i++) {
-    var hobby = _a[_i];
-    console.log(hobby.toLocaleUpperCase());
-}
+var result = combine('rajan ', 'kumar');
+console.log(result);
