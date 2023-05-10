@@ -24,14 +24,23 @@
 // let result = add(n1,n2);
 // console.log(result);
 
+enum ROLES {
+  ADMIN,
+  AUTHOR,
+  GUEST
+}
 
-const person:{name:string,age:number,hobbies:string[]}={
+
+const person:{name:string,age:number,hobbies:string[],role:number}={
     name:"Rajan Kumar",
     age:26,
-    hobbies:['singing','acting']
+    hobbies:['singing','acting'],
+    role:ROLES.ADMIN
 }
 // console.log(person.name);
-
+if(person.role===ROLES.ADMIN){
+    console.log('User is Admin');
+}
 let favorite:any[];//or Either you can leave empty without any[]
 favorite = ['wondering',1];
 

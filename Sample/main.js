@@ -21,12 +21,22 @@
 // //n2 = 'str'
 // let result = add(n1,n2);
 // console.log(result);
+var ROLES;
+(function (ROLES) {
+    ROLES[ROLES["ADMIN"] = 0] = "ADMIN";
+    ROLES[ROLES["AUTHOR"] = 1] = "AUTHOR";
+    ROLES[ROLES["GUEST"] = 2] = "GUEST";
+})(ROLES || (ROLES = {}));
 var person = {
     name: "Rajan Kumar",
     age: 26,
-    hobbies: ['singing', 'acting']
+    hobbies: ['singing', 'acting'],
+    role: ROLES.ADMIN
 };
 // console.log(person.name);
+if (person.role === ROLES.ADMIN) {
+    console.log('User is Admin');
+}
 var favorite; //or Either you can leave empty without any[]
 favorite = ['wondering', 1];
 for (var _i = 0, _a = person.hobbies; _i < _a.length; _i++) {
