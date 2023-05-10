@@ -25,8 +25,16 @@
 // console.log(result);
 
 
-const person:{name:string,age:number}={
+const person:{name:string,age:number,hobbies:string[]}={
     name:"Rajan Kumar",
-    age:26
+    age:26,
+    hobbies:['singing','acting']
 }
-console.log(person.name);
+// console.log(person.name);
+
+let favorite:any[];//or Either you can leave empty without any[]
+favorite = ['wondering',1];
+
+for(let hobby of person.hobbies){
+    console.log(hobby.toLocaleUpperCase());
+}

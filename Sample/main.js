@@ -23,6 +23,13 @@
 // console.log(result);
 var person = {
     name: "Rajan Kumar",
-    age: 26
+    age: 26,
+    hobbies: ['singing', 'acting']
 };
-console.log(person.name);
+// console.log(person.name);
+var favorite; //or Either you can leave empty without any[]
+favorite = ['wondering', 1];
+for (var _i = 0, _a = person.hobbies; _i < _a.length; _i++) {
+    var hobby = _a[_i];
+    console.log(hobby.toLocaleUpperCase());
+}
