@@ -87,5 +87,6 @@ function add(number1:number,number2:number):number {
 function printResult(value:number):void{
   console.log('Result ', value)
 }
-
-printResult(add(1,2));
+let combineValue:(a:number,b:number)=>number;
+combineValue = add;
+console.log(combineValue(1,2));

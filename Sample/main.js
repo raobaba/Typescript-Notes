@@ -76,4 +76,6 @@ function add(number1, number2) {
 function printResult(value) {
     console.log('Result ', value);
 }
-printResult(add(1, 2));
+var combineValue;
+combineValue = add;
+console.log(combineValue(1, 2));
