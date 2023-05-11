@@ -80,13 +80,39 @@
 
 //*************************************************************** */
 
-function add(number1:number,number2:number):number {
-  return number1 + number2;
+// function add(number1:number,number2:number):number {
+//   return number1 + number2;
+// }
+
+// function printResult(value:number):void{
+//   console.log('Result ', value)
+// }
+// let combineValue:(a:number,b:number)=>number;
+// combineValue = add;
+// console.log(combineValue(1,2));
+
+//************************************************************* */
+//Uknown and never type in typescript
+//no problem assigning like this but
+// let userInput:any
+// let userName:string
+// userInput = 4;
+// userInput = "Rajan";
+// userName=userInput;
+
+let userInput:unknown
+let userName:string
+userInput = 4;
+userInput = "Rajan";
+//so write like this here
+if(typeof userInput==='string'){
+  userName=userInput;
 }
 
-function printResult(value:number):void{
-  console.log('Result ', value)
+
+function generateError(message:string,code:number):void{
+   throw {message,code};
 }
-let combineValue:(a:number,b:number)=>number;
-combineValue = add;
-console.log(combineValue(1,2));
+let result = generateError('invalid page',500);
+console.log(result);
+

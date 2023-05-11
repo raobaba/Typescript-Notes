@@ -70,12 +70,33 @@
 // console.log(result);
 // console.log(combine(1,2,RESULT_TYPES.AS_NUMBER));
 //*************************************************************** */
-function add(number1, number2) {
-    return number1 + number2;
+// function add(number1:number,number2:number):number {
+//   return number1 + number2;
+// }
+// function printResult(value:number):void{
+//   console.log('Result ', value)
+// }
+// let combineValue:(a:number,b:number)=>number;
+// combineValue = add;
+// console.log(combineValue(1,2));
+//************************************************************* */
+//Uknown and never type in typescript
+//no problem assigning like this but
+// let userInput:any
+// let userName:string
+// userInput = 4;
+// userInput = "Rajan";
+// userName=userInput;
+var userInput;
+var userName;
+userInput = 4;
+userInput = "Rajan";
+//so write like this here
+if (typeof userInput === 'string') {
+    userName = userInput;
 }
-function printResult(value) {
-    console.log('Result ', value);
+function generateError(message, code) {
+    throw { message: message, code: code };
 }
-var combineValue;
-combineValue = add;
-console.log(combineValue(1, 2));
+var result = generateError('invalid page', 500);
+console.log(result);
