@@ -26,6 +26,7 @@
 //   AUTHOR,
 //   GUEST
 // }
+//************************************************************* */
 // const person:{name:string,age:number,hobbies:string[],role:number}={
 //     name:"Rajan Kumar",
 //     age:26,
@@ -46,27 +47,33 @@
 // array.push('rajan');
 // array.push(1)
 // console.log(array);
+//*************************************************************** */
 //assigning union('something'|'something')
-var RESULT_TYPES;
-(function (RESULT_TYPES) {
-    RESULT_TYPES["AS_NUMBER"] = "as-number";
-    RESULT_TYPES["AS_TEXT"] = "as-text";
-})(RESULT_TYPES || (RESULT_TYPES = {}));
-var combine = function (number1, number2, resultType) {
-    var result;
-    if (typeof number1 === 'number' && typeof number2 === 'number') {
-        result = number1 + number2;
-    }
-    else {
-        result = number1.toString() + number2.toString();
-    }
-    if (resultType === RESULT_TYPES.AS_NUMBER) {
-        return +result;
-    }
-    else {
-        return result.toString();
-    }
-};
-var result = combine(1, 2, RESULT_TYPES.AS_TEXT);
-console.log(result);
-console.log(combine(1, 2, RESULT_TYPES.AS_NUMBER));
+// enum RESULT_TYPES {
+//   AS_NUMBER = 'as-number',
+//   AS_TEXT = 'as-text'
+// }
+// const combine=(number1:number|string,number2:number|string,resultType:RESULT_TYPES)=>{
+//     let result;
+//      if(typeof number1 === 'number' && typeof number2 === 'number'){
+//       result = number1+number2;
+//      }else{
+//       result = number1.toString()+number2.toString();
+//      }
+//      if(resultType===RESULT_TYPES.AS_NUMBER){
+//         return +result;
+//      }else{
+//       return result.toString();
+//      }
+// }
+// const result = combine(1,2,RESULT_TYPES.AS_TEXT);
+// console.log(result);
+// console.log(combine(1,2,RESULT_TYPES.AS_NUMBER));
+//*************************************************************** */
+function add(number1, number2) {
+    return number1 + number2;
+}
+function printResult(value) {
+    console.log('Result ', value);
+}
+printResult(add(1, 2));

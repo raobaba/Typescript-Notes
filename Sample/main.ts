@@ -29,7 +29,7 @@
 //   AUTHOR,
 //   GUEST
 // }
-
+//************************************************************* */
 
 // const person:{name:string,age:number,hobbies:string[],role:number}={
 //     name:"Rajan Kumar",
@@ -53,27 +53,39 @@
 // array.push('rajan');
 // array.push(1)
 // console.log(array);
-
+//*************************************************************** */
 //assigning union('something'|'something')
 
-enum RESULT_TYPES {
-  AS_NUMBER = 'as-number',
-  AS_TEXT = 'as-text'
+// enum RESULT_TYPES {
+//   AS_NUMBER = 'as-number',
+//   AS_TEXT = 'as-text'
+// }
+
+// const combine=(number1:number|string,number2:number|string,resultType:RESULT_TYPES)=>{
+//     let result;
+//      if(typeof number1 === 'number' && typeof number2 === 'number'){
+//       result = number1+number2;
+//      }else{
+//       result = number1.toString()+number2.toString();
+//      }
+//      if(resultType===RESULT_TYPES.AS_NUMBER){
+//         return +result;
+//      }else{
+//       return result.toString();
+//      }
+// }
+// const result = combine(1,2,RESULT_TYPES.AS_TEXT);
+// console.log(result);
+// console.log(combine(1,2,RESULT_TYPES.AS_NUMBER));
+
+//*************************************************************** */
+
+function add(number1:number,number2:number):number {
+  return number1 + number2;
 }
 
-const combine=(number1:number|string,number2:number|string,resultType:RESULT_TYPES)=>{
-    let result;
-     if(typeof number1 === 'number' && typeof number2 === 'number'){
-      result = number1+number2;
-     }else{
-      result = number1.toString()+number2.toString();
-     }
-     if(resultType===RESULT_TYPES.AS_NUMBER){
-        return +result;
-     }else{
-      return result.toString();
-     }
+function printResult(value:number):void{
+  console.log('Result ', value)
 }
-const result = combine(1,2,RESULT_TYPES.AS_TEXT);
-console.log(result);
-console.log(combine(1,2,RESULT_TYPES.AS_NUMBER));
+
+printResult(add(1,2));
