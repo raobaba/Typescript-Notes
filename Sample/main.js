@@ -47,15 +47,26 @@
 // array.push(1)
 // console.log(array);
 //assigning union('something'|'something')
-var combine = function (number1, number2) {
-    var res;
+var RESULT_TYPES;
+(function (RESULT_TYPES) {
+    RESULT_TYPES["AS_NUMBER"] = "as-number";
+    RESULT_TYPES["AS_TEXT"] = "as-text";
+})(RESULT_TYPES || (RESULT_TYPES = {}));
+var combine = function (number1, number2, resultType) {
+    var result;
     if (typeof number1 === 'number' && typeof number2 === 'number') {
-        res = number1 + number2;
+        result = number1 + number2;
     }
     else {
-        res = number1.toString() + number2.toString();
+        result = number1.toString() + number2.toString();
     }
-    return res;
+    if (resultType === RESULT_TYPES.AS_NUMBER) {
+        return +result;
+    }
+    else {
+        return result.toString();
+    }
 };
-var result = combine('rajan ', 'kumar');
+var result = combine(1, 2, RESULT_TYPES.AS_TEXT);
 console.log(result);
+console.log(combine(1, 2, RESULT_TYPES.AS_NUMBER));

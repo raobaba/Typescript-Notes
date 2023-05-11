@@ -56,14 +56,24 @@
 
 //assigning union('something'|'something')
 
-const combine=(number1:number|string|boolean,number2:number|string|boolean)=>{
-    let res;
-     if(typeof number1 === 'number' && typeof number2 === 'number'){
-        res = number1+number2;
-     }else{
-       res = number1.toString()+number2.toString();
-     }
-     return res;
+enum RESULT_TYPES {
+  AS_NUMBER = 'as-number',
+  AS_TEXT = 'as-text'
 }
-const result = combine('rajan ','kumar');
+
+const combine=(number1:number|string,number2:number|string,resultType:RESULT_TYPES)=>{
+    let result;
+     if(typeof number1 === 'number' && typeof number2 === 'number'){
+      result = number1+number2;
+     }else{
+      result = number1.toString()+number2.toString();
+     }
+     if(resultType===RESULT_TYPES.AS_NUMBER){
+        return +result;
+     }else{
+      return result.toString();
+     }
+}
+const result = combine(1,2,RESULT_TYPES.AS_TEXT);
 console.log(result);
+console.log(combine(1,2,RESULT_TYPES.AS_NUMBER));
