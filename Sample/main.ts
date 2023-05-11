@@ -100,19 +100,80 @@
 // userInput = "Rajan";
 // userName=userInput;
 
-let userInput:unknown
-let userName:string
-userInput = 4;
-userInput = "Rajan";
-//so write like this here
-if(typeof userInput==='string'){
-  userName=userInput;
+// let userInput:unknown
+// let userName:string
+// userInput = 4;
+// userInput = "Rajan";
+// //so write like this here
+// if(typeof userInput==='string'){
+//   userName=userInput;
+// }
+
+
+// function generateError(message:string,code:number):void{
+//    throw {message,code};
+// }
+// let result = generateError('invalid page',500);
+// console.log(result);
+// console.log('watch is running')
+
+
+class Department {
+    private employees:string[]=[];
+    reports:string[]=[];
+    constructor(private readonly id:string,public name:string){
+
+    }
+    addEmployee(employee:string){
+        this.employees.push(employee);
+    }
+    printEmployee(){
+        console.log(this.employees.length);
+        console.log(this.employees)
+    }
+    describe(this:Department){
+        console.log(`department with id ${this.id} ` ,this.name);
+    }
+}
+let department = new Department('dI','Accounting');
+// department.describe();
+// console.log(department);
+
+// let departmentCopy = {name:'rajan',describe:department.describe};
+// console.log(departmentCopy);
+// departmentCopy.describe();
+
+// department.addEmployee('rajan');
+// department.addEmployee("shashi");
+// department.printEmployee();
+// department.describe();
+
+class ItDepartment extends Department{
+     constructor(id:string,admins:string[]){
+        super(id,'department');
+     }
+}
+
+class AccountingDepartment extends Department{
+    constructor(id:string,public report:string[]){
+        super(id,'Accounting');
+    }
+    addReport(report:string){
+        this.reports.push(report);
+    }
+    printReport(){
+        console.log(this.reports);
+    }
 }
 
 
-function generateError(message:string,code:number):void{
-   throw {message,code};
-}
-let result = generateError('invalid page',500);
-console.log(result);
+let it = new ItDepartment('di',['rajan']);
+it.addEmployee('rajan');
+console.log(it);
+
+let accounting = new AccountingDepartment('ID',[]);
+accounting.addEmployee('shashi');
+accounting.addReport("something wrong");;
+accounting.printReport();
+
 

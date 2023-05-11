@@ -1,3 +1,4 @@
+"use strict";
 // var input1:Element | null = document.querySelector('#number1') as HTMLInputElement;
 // var input2:Element | null = document.querySelector('#number2') as HTMLIFrameElement;
 // var button = document.querySelector('#button');
@@ -87,16 +88,70 @@
 // userInput = 4;
 // userInput = "Rajan";
 // userName=userInput;
-var userInput;
-var userName;
-userInput = 4;
-userInput = "Rajan";
-//so write like this here
-if (typeof userInput === 'string') {
-    userName = userInput;
+// let userInput:unknown
+// let userName:string
+// userInput = 4;
+// userInput = "Rajan";
+// //so write like this here
+// if(typeof userInput==='string'){
+//   userName=userInput;
+// }
+// function generateError(message:string,code:number):void{
+//    throw {message,code};
+// }
+// let result = generateError('invalid page',500);
+// console.log(result);
+// console.log('watch is running')
+class Department {
+    constructor(id, name) {
+        this.id = id;
+        this.name = name;
+        this.employees = [];
+        this.reports = [];
+    }
+    addEmployee(employee) {
+        this.employees.push(employee);
+    }
+    printEmployee() {
+        console.log(this.employees.length);
+        console.log(this.employees);
+    }
+    describe() {
+        console.log(`department with id ${this.id} `, this.name);
+    }
 }
-function generateError(message, code) {
-    throw { message: message, code: code };
+let department = new Department('dI', 'Accounting');
+// department.describe();
+// console.log(department);
+// let departmentCopy = {name:'rajan',describe:department.describe};
+// console.log(departmentCopy);
+// departmentCopy.describe();
+// department.addEmployee('rajan');
+// department.addEmployee("shashi");
+// department.printEmployee();
+// department.describe();
+class ItDepartment extends Department {
+    constructor(id, admins) {
+        super(id, 'department');
+    }
 }
-var result = generateError('invalid page', 500);
-console.log(result);
+class AccountingDepartment extends Department {
+    constructor(id, report) {
+        super(id, 'Accounting');
+        this.report = report;
+    }
+    addReport(report) {
+        this.reports.push(report);
+    }
+    printReport() {
+        console.log(this.reports);
+    }
+}
+let it = new ItDepartment('di', ['rajan']);
+it.addEmployee('rajan');
+console.log(it);
+let accounting = new AccountingDepartment('ID', []);
+accounting.addEmployee('shashi');
+accounting.addReport("something wrong");
+;
+accounting.printReport();
