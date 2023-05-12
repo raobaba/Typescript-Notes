@@ -118,38 +118,45 @@
 // console.log('watch is running')
 
 
-class Department {
-    protected employees:string[]=[];
-    protected reports:string[]=[];
-    constructor(private readonly id:string,public name:string){
+// class Department {
+//     protected employees:string[]=[];
+//     protected reports:string[]=[];
+//     static financialYear = '2020'
+//     constructor(private readonly id:string,public name:string){
 
-    }
-    get mostRecentReport(){
-        if(!this.reports){
-            throw new Error("No Reports Found");
-        }
-        return this.reports[this.reports.length-1];
-    }
+//     }
+//     describe(){
+//         console.log(`Accounting department with id ${this.id}`)
+//     }
+//     get mostRecentReport(){
+//         if(!this.reports){
+//             throw new Error("No Reports Found");
+//         }
+//         return this.reports[this.reports.length-1];
+//     }
 
-    set mostRecentReport(value:string){
-         if(!value){
-            throw new Error("Report cannot be inserted");
-         }
-         this.addEmployee(value);
-    }
+//     set mostRecentReport(value:string){
+//          if(!value){
+//             throw new Error("Report cannot be inserted");
+//          }
+//          this.addEmployee(value);
+//     }
 
-    addEmployee(employee:string){
-        this.employees.push(employee);
-    }
-    printEmployee(){
-        console.log(this.employees.length);
-        console.log(this.employees)
-    }
-    describe(this:Department){
-        console.log(`department with id ${this.id} ` ,this.name);
-    }
-}
-let department = new Department('dI','Accounting');
+//     addEmployee(employee:string){
+//         this.employees.push(employee);
+//     }
+//     static createEmployee(name:string){
+//         return {name:name};
+//     }
+//     printEmployee(){
+//         console.log(this.employees.length);
+//         console.log(this.employees)
+//     }
+//     // describe(this:Department){
+//     //     console.log(`department with id ${this.id} ` ,this.name);
+//     // }
+// }
+//let department = new Department('dI','Accounting');
 // department.describe();
 // console.log(department);
 
@@ -162,42 +169,212 @@ let department = new Department('dI','Accounting');
 // department.printEmployee();
 // department.describe();
 
-class ItDepartment extends Department{
-     constructor(id:string,admins:string[]){
-        super(id,'department');
+// class ItDepartment extends Department{
+//      constructor(id:string,admins:string[]){
+//         super(id,'department');
+//      }
+// }
+
+// class AccountingDepartment extends Department{
+//     constructor(id:string,public report:string[]){
+//         super(id,'Accounting');
+//     }
+//     addEmployee(employee: string) {
+//         if(employee==='rajan'){
+//             return;
+//         }
+//         this.employees.push(employee)
+//     }
+//     addReport(report:string){
+//         this.reports.push(report);
+//     }
+//     printReport(){
+//         console.log(this.reports);
+//     }
+// }
+
+
+// let it = new ItDepartment('di',['rajan']);
+// it.addEmployee('rajan');
+// console.log(it);
+// console.log(Department.createEmployee('Rajan'),Department.financialYear)
+// let accounting = new AccountingDepartment('ID',[]);
+// accounting.addEmployee('shashi');
+// accounting.addReport("something wrong");
+// accounting.addReport("something went wrong");
+
+// console.log(accounting.mostRecentReport);
+// accounting.mostRecentReport = 'Recent Report'
+// accounting.printReport();
+// accounting.describe()
+
+// interface person{
+//     name:string,
+//     age:number,
+//     hello(phrase:string):void
+// }
+
+// let rajanPerson:person={
+//     name:'Rajan',
+//     age:24,
+//     hello(phrase:string){
+//        console.log(`The age of ${this.name} is ${this.age}`);
+//     }
+// }
+
+// let dhanjeePerson:person={
+//     name:'dhanjee',
+//     age:24,
+//     hello(phrase:string){
+//         console.log(`The age of ${this.name} is ${this.age}`);
+//     }
+// }
+
+
+//type addFun = (a:number,b:number)=>number
+// interface addFun {
+//     (a:number,b:number):number
+// }
+// var add:addFun;
+// add = (x:number,y:number)=>{
+//     return x+y;
+// }
+
+// interface IPerson{  //type IPerson={}
+//     name:string,
+//     age:number,
+//     hello(phrase:string):void
+//     greet():void//need here for dhanjee
+// }
+// class Person implements IPerson {
+//      constructor(public name:string,public age:number){
+//      }
+//      hello(phrase:string){
+//         console.log(phrase+this.name);
+//      }
+//      greet(){
+//         console.log("Hello Everyone");
+//      }
+// }
+// let rajan:Person = new Person('rajan',20);
+// let dhanjee:IPerson = new Person('dhanjee',30);
+
+// rajan.hello("Hello ");
+// rajan.greet()
+// dhanjee.greet();
+// dhanjee.hello("Hello ");
+
+
+
+type admin= {
+    name:string,
+    roles:string[]
+}
+type employee={
+    name:string,
+    startDate:Date
+}
+
+// type superEmployee = admin & employee;
+interface superEmployee extends admin,employee {}
+let emp:superEmployee={
+   name:'rajan',
+   roles:['admin'],
+   startDate:new Date()
+}
+
+type combinable = string | number;
+type numeric = string | boolean;
+
+type universal = numeric|combinable;
+
+function getAdd(a:combinable,b:combinable){
+    if(typeof a === 'string' || typeof b === 'string'){
+        return a.toString()+b.toString();
+    }
+    return a+b;
+}
+
+type unknownEmployee = admin | employee;
+
+function printEmployeeInfo(emp:unknownEmployee){
+     console.log('name: ',emp.name);
+     if('roles' in emp){
+        console.log('roles', + emp.roles)
+     }
+     if('startDate' in emp){
+        console.log('start Date', + emp.startDate)
+     }
+}
+printEmployeeInfo(emp)
+
+class Car{
+    driver(){
+       console.log('Car driving...');
+    }
+}
+
+class Truck{
+    driver(){
+        console.log('Truck driving...');
+    }
+    loadingCargo(amount:number){
+        console.log('Loading Cargo',+ amount);
+    }
+}
+
+type vehicle = Car | Truck;
+
+function useVehicle(veh:vehicle){
+     veh.driver();
+     if('loadingCargo' in veh){
+        veh.loadingCargo(49)
      }
 }
 
-class AccountingDepartment extends Department{
-    constructor(id:string,public report:string[]){
-        super(id,'Accounting');
-    }
-    addEmployee(employee: string) {
-        if(employee==='rajan'){
-            return;
-        }
-        this.employees.push(employee)
-    }
-    addReport(report:string){
-        this.reports.push(report);
-    }
-    printReport(){
-        console.log(this.reports);
-    }
+let v1 = new Car();
+let v2 = new Truck();
+useVehicle(v1);
+useVehicle(v2);
+
+interface Bird {
+    type:'bird',
+    flyingSpeed:number
+}
+interface Snake {
+    type:'snake',
+    crowlingSpeed:number
+}
+interface Horse {
+    type:'horse',
+    runningSpeed:number
 }
 
+type Animal = Bird | Snake | Horse;
 
-let it = new ItDepartment('di',['rajan']);
-it.addEmployee('rajan');
-console.log(it);
+function checkSpeedOfAnimal(animal:Animal){
+     let speed = 0;
+     switch(animal.type){
+        case 'bird':
+            speed:animal.flyingSpeed;
+            break;
+        case 'snake':
+            speed:animal.crowlingSpeed;
+            break;
+        case 'horse':
+            speed:animal.runningSpeed;
+            break;
+     }
+     console.log('speed of animal is', speed);
+}
 
-let accounting = new AccountingDepartment('ID',[]);
-accounting.addEmployee('shashi');
-accounting.addReport("something wrong");
-accounting.addReport("something went wrong");
-
-console.log(accounting.mostRecentReport);
-accounting.mostRecentReport = 'Recent Report'
-accounting.printReport();
-
-
+const snake:Snake = {
+     crowlingSpeed:30,
+     type:'snake'
+}
+const bird:Bird={
+    flyingSpeed:50,
+    type:'bird'
+}
+checkSpeedOfAnimal(bird);
+checkSpeedOfAnimal(snake);
