@@ -109,6 +109,18 @@ class Department {
         this.employees = [];
         this.reports = [];
     }
+    get mostRecentReport() {
+        if (!this.reports) {
+            throw new Error("No Reports Found");
+        }
+        return this.reports[this.reports.length - 1];
+    }
+    set mostRecentReport(value) {
+        if (!value) {
+            throw new Error("Report cannot be inserted");
+        }
+        this.addReport(value);
+    }
     addEmployee(employee) {
         this.employees.push(employee);
     }
@@ -140,6 +152,12 @@ class AccountingDepartment extends Department {
         super(id, 'Accounting');
         this.report = report;
     }
+    addEmployee(employee) {
+        if (employee === 'rajan') {
+            return;
+        }
+        this.employees.push(employee);
+    }
     addReport(report) {
         this.reports.push(report);
     }
@@ -153,5 +171,7 @@ console.log(it);
 let accounting = new AccountingDepartment('ID', []);
 accounting.addEmployee('shashi');
 accounting.addReport("something wrong");
-;
+accounting.addReport("something went wrong");
+console.log(accounting.mostRecentReport);
+accounting.mostRecentReport = 'Recent Report';
 accounting.printReport();

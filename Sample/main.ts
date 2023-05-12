@@ -119,11 +119,25 @@
 
 
 class Department {
-    private employees:string[]=[];
-    reports:string[]=[];
+    protected employees:string[]=[];
+    protected reports:string[]=[];
     constructor(private readonly id:string,public name:string){
 
     }
+    get mostRecentReport(){
+        if(!this.reports){
+            throw new Error("No Reports Found");
+        }
+        return this.reports[this.reports.length-1];
+    }
+
+    set mostRecentReport(value:string){
+         if(!value){
+            throw new Error("Report cannot be inserted");
+         }
+         this.addEmployee(value);
+    }
+
     addEmployee(employee:string){
         this.employees.push(employee);
     }
@@ -158,6 +172,12 @@ class AccountingDepartment extends Department{
     constructor(id:string,public report:string[]){
         super(id,'Accounting');
     }
+    addEmployee(employee: string) {
+        if(employee==='rajan'){
+            return;
+        }
+        this.employees.push(employee)
+    }
     addReport(report:string){
         this.reports.push(report);
     }
@@ -173,7 +193,11 @@ console.log(it);
 
 let accounting = new AccountingDepartment('ID',[]);
 accounting.addEmployee('shashi');
-accounting.addReport("something wrong");;
+accounting.addReport("something wrong");
+accounting.addReport("something went wrong");
+
+console.log(accounting.mostRecentReport);
+accounting.mostRecentReport = 'Recent Report'
 accounting.printReport();
 
 
