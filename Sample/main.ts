@@ -266,115 +266,157 @@
 
 
 
-type admin= {
-    name:string,
-    roles:string[]
+// type admin= {
+//     name:string,
+//     roles:string[]
+// }
+// type employee={
+//     name:string,
+//     startDate:Date
+// }
+
+// // type superEmployee = admin & employee;
+// interface superEmployee extends admin,employee {}
+// let emp:superEmployee={
+//    name:'rajan',
+//    roles:['admin'],
+//    startDate:new Date()
+// }
+
+// type combinable = string | number;
+// type numeric = string | boolean;
+
+// type universal = numeric|combinable;
+
+// function getAdd(a:combinable,b:combinable){
+//     if(typeof a === 'string' || typeof b === 'string'){
+//         return a.toString()+b.toString();
+//     }
+//     return a+b;
+// }
+
+// type unknownEmployee = admin | employee;
+
+// function printEmployeeInfo(emp:unknownEmployee){
+//      console.log('name: ',emp.name);
+//      if('roles' in emp){
+//         console.log('roles', + emp.roles)
+//      }
+//      if('startDate' in emp){
+//         console.log('start Date', + emp.startDate)
+//      }
+// }
+// printEmployeeInfo(emp)
+
+// class Car{
+//     driver(){
+//        console.log('Car driving...');
+//     }
+// }
+
+// class Truck{
+//     driver(){
+//         console.log('Truck driving...');
+//     }
+//     loadingCargo(amount:number){
+//         console.log('Loading Cargo',+ amount);
+//     }
+// }
+
+// type vehicle = Car | Truck;
+
+// function useVehicle(veh:vehicle){
+//      veh.driver();
+//      if('loadingCargo' in veh){
+//         veh.loadingCargo(49)
+//      }
+// }
+
+// let v1 = new Car();
+// let v2 = new Truck();
+// useVehicle(v1);
+// useVehicle(v2);
+
+// interface Bird {
+//     type:'bird',
+//     flyingSpeed:number
+// }
+// interface Snake {
+//     type:'snake',
+//     crowlingSpeed:number
+// }
+// interface Horse {
+//     type:'horse',
+//     runningSpeed:number
+// }
+
+// type Animal = Bird | Snake | Horse;
+
+// function checkSpeedOfAnimal(animal:Animal){
+//      let speed = 0;
+//      switch(animal.type){
+//         case 'bird':
+//             speed:animal.flyingSpeed;
+//             break;
+//         case 'snake':
+//             speed:animal.crowlingSpeed;
+//             break;
+//         case 'horse':
+//             speed:animal.runningSpeed;
+//             break;
+//      }
+//      console.log('speed of animal is', speed);
+// }
+
+// const snake:Snake = {
+//      crowlingSpeed:30,
+//      type:'snake'
+// }
+// const bird:Bird={
+//     flyingSpeed:50,
+//     type:'bird'
+// }
+// checkSpeedOfAnimal(bird);
+// checkSpeedOfAnimal(snake);
+
+interface length {
+    length:number
 }
-type employee={
-    name:string,
-    startDate:Date
-}
 
-// type superEmployee = admin & employee;
-interface superEmployee extends admin,employee {}
-let emp:superEmployee={
-   name:'rajan',
-   roles:['admin'],
-   startDate:new Date()
-}
-
-type combinable = string | number;
-type numeric = string | boolean;
-
-type universal = numeric|combinable;
-
-function getAdd(a:combinable,b:combinable){
-    if(typeof a === 'string' || typeof b === 'string'){
-        return a.toString()+b.toString();
+function getCountAndDescribe<T extends length>(element:T){
+    let text = 'Got No Element';
+    if(element.length===1){
+        text = 'Got 1 Element';
     }
-    return a+b;
+    if(element.length>1){
+        text = `Got ${element.length} Elements`;
+    }
+    return [element,text];
 }
+console.log(getCountAndDescribe(['rajan','dhanjee']))
 
-type unknownEmployee = admin | employee;
-
-function printEmployeeInfo(emp:unknownEmployee){
-     console.log('name: ',emp.name);
-     if('roles' in emp){
-        console.log('roles', + emp.roles)
-     }
-     if('startDate' in emp){
-        console.log('start Date', + emp.startDate)
-     }
+function extractFromObject<T extends object, U extends keyof T>(obj:T,key:U){
+     return obj[key];
 }
-printEmployeeInfo(emp)
+extractFromObject({name:'rajan',age:26},'age');
 
-class Car{
-    driver(){
-       console.log('Car driving...');
+
+class dataStorage {
+    public data:Array<string> = [];
+    addItem(item:string){
+       this.data.push(item)
+    }
+    removeItem(item:string){
+        this.data.splice(this.data.indexOf(item),1);
+    }
+    getItem(){
+        return [...this.data];
     }
 }
+const stringStorage = new dataStorage();
+stringStorage.addItem("rajan");
+stringStorage.addItem("shashi");
+console.log(stringStorage.getItem());
+stringStorage.removeItem('shashi');
+console.log(stringStorage.getItem());
 
-class Truck{
-    driver(){
-        console.log('Truck driving...');
-    }
-    loadingCargo(amount:number){
-        console.log('Loading Cargo',+ amount);
-    }
-}
-
-type vehicle = Car | Truck;
-
-function useVehicle(veh:vehicle){
-     veh.driver();
-     if('loadingCargo' in veh){
-        veh.loadingCargo(49)
-     }
-}
-
-let v1 = new Car();
-let v2 = new Truck();
-useVehicle(v1);
-useVehicle(v2);
-
-interface Bird {
-    type:'bird',
-    flyingSpeed:number
-}
-interface Snake {
-    type:'snake',
-    crowlingSpeed:number
-}
-interface Horse {
-    type:'horse',
-    runningSpeed:number
-}
-
-type Animal = Bird | Snake | Horse;
-
-function checkSpeedOfAnimal(animal:Animal){
-     let speed = 0;
-     switch(animal.type){
-        case 'bird':
-            speed:animal.flyingSpeed;
-            break;
-        case 'snake':
-            speed:animal.crowlingSpeed;
-            break;
-        case 'horse':
-            speed:animal.runningSpeed;
-            break;
-     }
-     console.log('speed of animal is', speed);
-}
-
-const snake:Snake = {
-     crowlingSpeed:30,
-     type:'snake'
-}
-const bird:Bird={
-    flyingSpeed:50,
-    type:'bird'
-}
-checkSpeedOfAnimal(bird);
-checkSpeedOfAnimal(snake);
